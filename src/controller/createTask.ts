@@ -1,9 +1,9 @@
-import express, { Request, Response } from "express";
+import * as express from "express";
 import Task from "../models/tasks";
 
 const createTask = express.Router();
 
-createTask.post("/", async (req: Request, res: Response) => {
+createTask.post("/", async (req, res) => {
   try {
     const { status, title, description } = req.body;
     const newTask = new Task({ status, title, description });

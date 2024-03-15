@@ -1,9 +1,9 @@
-import express, { Request, Response } from "express";
+import * as express from "express";
 import Task from "../models/tasks";
 
 const deleteRouter = express.Router();
 
-deleteRouter.delete("/:taskId", async (req: Request, res: Response) => {
+deleteRouter.delete("/:taskId", async (req, res) => {
   const { taskId } = req.params;
 
   try {

@@ -1,8 +1,8 @@
-import express, { Request, Response } from "express";
+import * as express from "express";
 import Task from "../models/tasks";
 
 const updateTaskRouter = express.Router();
-updateTaskRouter.put("/:taskId", async (req: Request, res: Response) => {
+updateTaskRouter.put("/:taskId", async (req, res) => {
   const { taskId } = req.params;
 
   const { title, description, status } = req.body;

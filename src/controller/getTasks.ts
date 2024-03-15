@@ -1,9 +1,9 @@
-import express, { Request, Response } from "express";
+import * as express from "express";
 import Task from "../models/tasks";
 
 const getTaskRouter = express.Router();
 
-getTaskRouter.get("/", async (req: Request, res: Response) => {
+getTaskRouter.get("/", async (req, res) => {
   try {
     const tasks = await Task.find();
     res.status(200).json(tasks);
