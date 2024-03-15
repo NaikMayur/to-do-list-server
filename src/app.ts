@@ -12,7 +12,10 @@ dotenv.config({ path: "./config/config.env" });
 
 app.use(
   cors({
-    origin: process.env.PRODUCTION_URL || "*",
+    origin: [
+      "https://main--heroic-seahorse-129213.netlify.app",
+      "http://localhost:3000",
+    ],
     credentials: true,
     methods: ["POST", "GET", "PUT", "DELETE"],
   })
