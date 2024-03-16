@@ -50,7 +50,6 @@ createTask.post("/", function (req, res) { return __awaiter(void 0, void 0, void
                 return [4 /*yield*/, newTask.save()];
             case 1:
                 _b.sent();
-                console.log(newTask);
                 res.status(201).json(newTask);
                 return [3 /*break*/, 3];
             case 2:

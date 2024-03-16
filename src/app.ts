@@ -6,6 +6,7 @@ import getTaskRouter from "./controller/getTasks";
 import createTaskRouter from "./controller/createTask";
 import updateTaskRouter from "./controller/updateTask";
 import deleteTaskRouter from "./controller/deleteTask";
+import filterTasksRouter from "./controller/filterTasks";
 
 const app = express();
 dotenv.config({ path: "./config/config.env" });
@@ -25,6 +26,7 @@ app.use("/api/tasks", createTaskRouter);
 app.use("/api/get-tasks", getTaskRouter);
 app.use("/api/update-tasks", updateTaskRouter);
 app.use("/api/delete-tasks", deleteTaskRouter);
+app.use("/api/filtered-tasks", filterTasksRouter);
 app.use(express.urlencoded({ extended: true }));
 dbConnect();
 

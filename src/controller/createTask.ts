@@ -8,7 +8,6 @@ createTask.post("/", async (req, res) => {
     const { status, title, description } = req.body;
     const newTask = new Task({ status, title, description });
     await newTask.save();
-    console.log(newTask);
     res.status(201).json(newTask);
   } catch (error) {
     console.error(error);

@@ -36,28 +36,36 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dbConnect = void 0;
-var mongoose_1 = require("mongoose");
-var dbConnect = function () { return __awaiter(void 0, void 0, void 0, function () {
-    var err_1;
+var express = require("express");
+var tasks_1 = require("../models/tasks");
+var filterTasksRouter = express.Router();
+filterTasksRouter.get("/", function (req, res) { return __awaiter(void 0, void 0, void 0, function () {
+    var status_1, tasks, error_1;
     return __generator(this, function (_a) {
         switch (_a.label) {
             case 0:
-                _a.trys.push([0, 2, , 3]);
-                if (!process.env.MONGO_URL) {
-                    throw new Error("Missing MONGO_URL environment variable");
-                }
-                return [4 /*yield*/, mongoose_1.default.connect(process.env.MONGO_URL, { dbName: "tasks" })];
+                _a.trys.push([0, 5, , 6]);
+                status_1 = req.query.status;
+                tasks = void 0;
+                if (!(status_1 === "All")) return [3 /*break*/, 2];
+                return [4 /*yield*/, tasks_1.default.find()];
             case 1:
-                _a.sent();
-                console.log("Connected To Database Successfully!");
-                return [3 /*break*/, 3];
-            case 2:
-                err_1 = _a.sent();
-                console.error("Error connecting to database:", err_1);
-                return [3 /*break*/, 3];
-            case 3: return [2 /*return*/];
+                tasks = _a.sent();
+                return [3 /*break*/, 4];
+            case 2: return [4 /*yield*/, tasks_1.default.find({ status: status_1 })];
+            case 3:
+                tasks = _a.sent();
+                _a.label = 4;
+            case 4:
+                res.status(200).json(tasks);
+                return [3 /*break*/, 6];
+            case 5:
+                error_1 = _a.sent();
+                console.error(error_1);
+                res.status(500).json({ message: "Internal server error" });
+                return [3 /*break*/, 6];
+            case 6: return [2 /*return*/];
         }
     });
-}); };
-exports.dbConnect = dbConnect;
+}); });
+exports.default = filterTasksRouter;
